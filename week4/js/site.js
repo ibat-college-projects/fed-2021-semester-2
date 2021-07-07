@@ -12,11 +12,13 @@ let listOfCitiesAsObjects = [
 function init() {
     // renderCityListing();
 
+    renderCityListingAsHtml();
+
 }
 
 function LoadItems() {
     renderCityListingFromObjects();
-    
+
 }
 function ClearItems() {
     const selectedObject = document.querySelector('#listOfCities')
@@ -51,8 +53,26 @@ function onSelectChange(element) {
 */
 
 
+function renderCityListingAsHtml() {
 
+    let html = [];
+    const myListOfCities = listOfCitiesAsObjects;
+    myListOfCities.shift(); // removing the first 'please select item' 
 
+    html.push(`<ul class="list-group">`); // push start of tag
+    //iterate and build up the list of items as an array
+    for (let city of myListOfCities) {
+        html.push(`<li class="list-group-item">${city.name}</li>`);
+    }
+    // Then we close the tag
+    html.push(`</ul>`);
+
+    //Get a reference to the html object we want to populate
+    const selectedObject = document.querySelector('#listOfCitiesContent');
+
+    //And then we push into the innerHTML
+    selectedObject.innerHTML = html.join(" "); // collapse the array into a single string with no separator
+}
 
 function renderCityListingFromObjects() {
     const selectedObject = document.querySelector('#listOfCities')
