@@ -6,16 +6,16 @@ $(function () {
 // Attach listeners to buttons etc when doc has loaded
 function init() {
 
-   
-    $('#btnLoadMovies').on('click',function(){
 
+    $('#btnLoadMovies').on('click', function () {
+        
         const url = 'movies.json';
 
-        $.getJSON(url,function(data) {
+        $.getJSON(url, function (data) {
 
             renderMovieData(data)
         })
-        
+
 
 
     });
@@ -29,7 +29,7 @@ function renderMovieData(movieListing) {
 
     htmlString = [];
     htmlString.push("<ol>");
-    for(const movie of movieListing) {
+    for (const movie of movieListing) {
 
         // let title = movie.title;
         // let year = movie.year;
@@ -37,7 +37,7 @@ function renderMovieData(movieListing) {
 
         // object destructuring
 
-        const { title, year, director, id, cast, ...rest} = movie;
+        const { title, year, director, id, cast, ...rest } = movie;
 
         let castMembers = cast.split(',');
 
@@ -46,19 +46,16 @@ function renderMovieData(movieListing) {
         htmlString.push(`<li>${title} : ${year}`);
 
         htmlString.push("<ol>")
-        for(const castMember of castMembers) {
+        for (const castMember of castMembers) {
             htmlString.push(`<li>${castMember}</li>`);
         }
-
 
         htmlString.push("</ol>")
 
         htmlString.push("</li>")
 
-
     }
     htmlString.push("</ol>");
-
 
     populateMoviePanel(htmlString.join(' '))
 }
