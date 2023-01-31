@@ -21,7 +21,7 @@ function btnSaveCar() {
 
 function btnRetrieveCar() {
     const carObject = JSON.parse(localStorage.getItem("carObject"));
-    console.log(`Retreived Value:  ${carObject.mf} ${carObject.model} ${carObject.colour}`)
+    console.log(`Retrieved Value:  ${carObject.mf} ${carObject.model} ${carObject.colour}`)
     renderList(carObject.mf, carObject.model, carObject.colour);
 }
 
